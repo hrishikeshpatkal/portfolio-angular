@@ -1,0 +1,237 @@
+<section id="projects" class="section section--alt">
+  <div class="container">
+    <div class="section-heading mx-auto max-w-3xl text-center" appReveal>
+      <p class="eyebrow">Featured Projects</p>
+      <h2><span class="text-gradient-primary">Products that ship real value</span></h2>
+      <p class="section-heading__sub mx-auto">
+        Full-stack builds I'm actively shaping — storefronts, streaming, and live messaging with production-minded architecture.
+      </p>
+    </div>
+
+    <div class="showcase-grid mx-auto">
+      @for (project of projects; track project.id; let index = $index) {
+        <article
+          class="group"
+          [class]="'showcase-card showcase-card--' + project.accent"
+          appReveal
+          [revealDelay]="index * 120"
+          revealVariant="scale"
+        >
+          <div class="showcase-card__visual showcase-card__visual--image">
+            <img
+              class="showcase-card__image"
+              [src]="project.image"
+              [alt]="project.imageAlt"
+              width="640"
+              height="400"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="showcase-card__image-overlay" aria-hidden="true"></div>
+            <div class="showcase-card__visual-glow" aria-hidden="true"></div>
+
+            <div class="showcase-card__icon-badge">
+              <i class="bi {{ project.icon }}" aria-hidden="true"></i>
+            </div>
+          </div>
+
+          <div class="showcase-card__body">
+            <div class="showcase-card__meta">
+              <span class="showcase-card__status" [class]="statusClass(project.status)">
+                <span class="showcase-card__status-dot" aria-hidden="true"></span>
+                {{ project.statusLabel }}
+              </span>
+              <span class="showcase-card__tagline">{{ project.tagline }}</span>
+            </div>
+
+            <h3 class="showcase-card__title">{{ project.title }}</h3>
+            <p class="showcase-card__description">{{ project.description }}</p>
+
+            <div class="showcase-card__current">
+              <p class="showcase-card__current-label">Currently</p>
+              <p class="showcase-card__current-text">{{ project.currentFocus }}</p>
+            </div>
+
+            <div class="showcase-card__tech-block">
+              <p class="showcase-card__tech-label">Tech stack</p>
+              <div class="showcase-card__tech">
+                @for (item of project.tech; track item) {
+                  <span class="showcase-card__tech-tag">{{ item }}</span>
+                }
+              </div>
+            </div>
+
+            <div class="showcase-card__actions">
+              <button
+                type="button"
+                class="showcase-card__action-btn showcase-card__action-btn--interactive"
+                (click)="openCaseStudy(project, $event)"
+              >
+                <i class="bi bi-journal-text" aria-hidden="true"></i>
+                Case study
+              </button>
+              <button
+                type="button"
+                class="showcase-card__action-btn showcase-card__action-btn--primary"
+                disabled
+                aria-disabled="true"
+                title="Live demo coming soon"
+              >
+                <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+                Live demo
+              </button>
+              <a
+                class="showcase-card__action-btn showcase-card__action-btn--interactive"
+                [href]="githubUrl(project)"
+                target="_blank"
+                rel="noopener noreferrer"
+                [attr.aria-label]="'View ' + project.title + ' on GitHub'"
+              >
+                <i class="bi bi-github" aria-hidden="true"></i>
+                GitHub
+              </a>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+
+    <aside
+      #githubStatsPanel
+      class="github-stats mx-auto mt-10 md:mt-12"
+      appReveal
+      [revealDelay]="projects.length * 120 + 80"
+      aria-label="GitHub profile statistics"
+    >
+      <div class="github-stats__shell">
+        <div class="github-stats__accent" aria-hidden="true"></div>
+
+        <div class="github-stats__layout">
+          <div class="github-stats__intro-block">
+            <span class="github-stats__icon" aria-hidden="true">
+              <i class="bi bi-github"></i>
+            </span>
+            <div class="github-stats__intro">
+              <p class="github-stats__eyebrow">Open source</p>
+              <h3 class="github-stats__title">GitHub activity</h3>
+              <p class="github-stats__subtitle">
+                Building in public — repos, contributions, and the community around them.
+              </p>
+            </div>
+            <a
+              class="github-stats__profile-link"
+              [href]="githubProfileUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="bi bi-github" aria-hidden="true"></i>
+              View profile
+              <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
+            </a>
+          </div>
+
+          <dl class="github-stats__grid">
+            @for (item of githubStatItems; track item.key) {
+              <div class="github-stats__item">
+                <span class="github-stats__item-icon" aria-hidden="true">
+                  <i class="bi {{ item.icon }}"></i>
+                </span>
+                <dt class="github-stats__value">{{ formatStatValue(item.key, githubStats()) }}</dt>
+                <dd class="github-stats__label">{{ item.label }}</dd>
+              </div>
+            }
+          </dl>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+@if (selectedProject(); as project) {
+  <div class="case-study-modal" role="presentation" (click)="closeCaseStudy()">
+    <div
+      #caseStudyDialog
+      class="case-study-modal__dialog"
+      role="dialog"
+      aria-modal="true"
+      [attr.aria-labelledby]="'case-study-title-' + project.id"
+      (click)="$event.stopPropagation()"
+    >
+      <button
+        #caseStudyClose
+        type="button"
+        class="case-study-modal__close"
+        (click)="closeCaseStudy()"
+        aria-label="Close case study"
+      >
+        <i class="bi bi-x-lg" aria-hidden="true"></i>
+      </button>
+
+      <div class="case-study-modal__hero">
+        <img
+          class="case-study-modal__image"
+          [src]="project.image"
+          [alt]="project.imageAlt"
+          width="640"
+          height="400"
+          decoding="async"
+        />
+        <div class="case-study-modal__hero-overlay" aria-hidden="true"></div>
+        <div class="case-study-modal__hero-content">
+          <span class="case-study-modal__status" [class]="statusClass(project.status)">
+            {{ project.statusLabel }}
+          </span>
+          <h3 class="case-study-modal__title" [id]="'case-study-title-' + project.id">{{ project.title }}</h3>
+          <p class="case-study-modal__tagline">{{ project.tagline }}</p>
+        </div>
+      </div>
+
+      <div class="case-study-modal__body">
+        <div class="case-study-modal__section">
+          <p class="case-study-modal__label">Problem</p>
+          <p class="case-study-modal__text">{{ project.caseStudy.problem }}</p>
+        </div>
+
+        <div class="case-study-modal__section">
+          <p class="case-study-modal__label">Approach</p>
+          <p class="case-study-modal__text">{{ project.caseStudy.approach }}</p>
+        </div>
+
+        <div class="case-study-modal__section">
+          <p class="case-study-modal__label">Outcome</p>
+          <p class="case-study-modal__text">{{ project.caseStudy.outcome }}</p>
+        </div>
+
+        <div class="case-study-modal__section">
+          <p class="case-study-modal__label">Highlights</p>
+          <ul class="case-study-modal__highlights">
+            @for (highlight of project.caseStudy.highlights; track highlight) {
+              <li>{{ highlight }}</li>
+            }
+          </ul>
+        </div>
+
+        <div class="case-study-modal__tech">
+          @for (item of project.tech; track item) {
+            <span class="showcase-card__tech-tag">{{ item }}</span>
+          }
+        </div>
+
+        <div class="case-study-modal__actions">
+          <a
+            class="showcase-card__action-btn showcase-card__action-btn--interactive"
+            [href]="githubUrl(project)"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="bi bi-github" aria-hidden="true"></i>
+            View on GitHub
+          </a>
+          <button type="button" class="showcase-card__action-btn showcase-card__action-btn--primary" (click)="closeCaseStudy()">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+}

@@ -1,0 +1,88 @@
+<footer class="site-footer safe-area-bottom">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col footer-col--brand">
+        <button type="button" class="footer-brand" appBrandLogoFx (click)="goHome()" aria-label="Go to home">
+          <app-brand-logo [src]="site.logoUrl" size="footer" />
+          <span class="footer-brand__text">
+            <span class="footer-brand__name">{{ site.name }}</span>
+            <span class="footer-brand__role">{{ site.title }}</span>
+          </span>
+        </button>
+        <p class="footer-brand__bio">
+          {{ site.title }} based in {{ site.location }}. Building production-grade software for enterprise teams.
+        </p>
+        <p class="footer-brand__status">
+          <span class="footer-brand__status-dot" aria-hidden="true"></span>
+          {{ site.availability }}
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h2 class="footer-col__title">Contact</h2>
+        <ul class="footer-contact">
+          <li>
+            <a class="footer-contact__link" [href]="'mailto:' + site.email">
+              <i class="bi bi-envelope" aria-hidden="true"></i>
+              <span>{{ site.email }}</span>
+            </a>
+          </li>
+          <li>
+            <a class="footer-contact__link" [href]="'tel:' + phoneHref">
+              <i class="bi bi-telephone" aria-hidden="true"></i>
+              <span>{{ site.phone }}</span>
+            </a>
+          </li>
+          <li>
+            <span class="footer-contact__link footer-contact__link--static">
+              <i class="bi bi-geo-alt" aria-hidden="true"></i>
+              <span>{{ site.location }}</span>
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h2 class="footer-col__title">Connect</h2>
+        <div class="footer-socials">
+          @for (link of socialLinks; track link.key) {
+            <a
+              class="footer-social footer-social--{{ link.key }}"
+              [href]="link.url"
+              [attr.target]="link.external ? '_blank' : null"
+              [attr.rel]="link.external ? 'noopener noreferrer' : null"
+              [attr.aria-label]="link.label"
+            >
+              <i class="bi {{ link.icon }}" aria-hidden="true"></i>
+              <span>{{ link.label }}</span>
+            </a>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-legal">
+      <div class="footer-legal__left">
+        <p class="footer-legal__rights">
+          &copy; {{ year }} {{ site.name }}. All rights reserved.
+        </p>
+        <p class="footer-legal__made">
+          Designed &amp; built by
+          <button type="button" class="footer-legal__author" (click)="goHome()">{{ site.name }}</button>
+        </p>
+      </div>
+
+      <div class="footer-legal__right">
+        <p class="footer-legal__stack">
+          Made with
+          <i class="bi bi-heart-fill footer-legal__heart" aria-hidden="true"></i>
+          in
+          <span class="footer-legal__angular">Angular</span>
+        </p>
+        <p class="footer-legal__note">
+          Source code and content on this site are owned by {{ site.name }}.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,38 @@
+<section id="education" class="section education-section">
+  <div class="container">
+    <div class="section-heading mx-auto max-w-3xl text-center" appReveal>
+      <p class="eyebrow">Education</p>
+      <h2><span class="text-gradient-primary">Foundation in engineering</span></h2>
+      <p class="section-heading__sub mx-auto">
+        Formal training in software engineering and advanced computing before shipping production systems at scale.
+      </p>
+    </div>
+
+    <div class="education-section__grid mx-auto grid max-w-4xl gap-5 md:grid-cols-2 md:gap-6">
+      @for (item of education; track item.id; let index = $index) {
+        <article class="education-card" appReveal [revealDelay]="index * 120">
+          <div class="education-card__icon" aria-hidden="true">
+            <i class="bi {{ item.icon }}"></i>
+          </div>
+
+          <div class="education-card__body">
+            <p class="education-card__degree">{{ item.degree }}</p>
+            <h3 class="education-card__institution">{{ item.institution }}</h3>
+            <p class="education-card__highlight">{{ item.highlight }}</p>
+
+            <div class="education-card__meta">
+              <span class="education-card__meta-item">
+                <i class="bi bi-calendar3" aria-hidden="true"></i>
+                {{ item.period }}
+              </span>
+              <span class="education-card__meta-item">
+                <i class="bi bi-geo-alt" aria-hidden="true"></i>
+                {{ item.location }}
+              </span>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

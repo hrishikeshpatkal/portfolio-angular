@@ -1,0 +1,53 @@
+<section id="skills" class="section section--alt skills-section">
+  <div class="container">
+    <div class="section-heading mx-auto max-w-3xl text-center" appReveal>
+      <p class="eyebrow">Stack</p>
+      <h2><span class="text-gradient-primary">Skills &amp; Technologies</span></h2>
+      <p class="section-heading__sub mx-auto">
+        Production stack from JiBe ERP — APIs, Angular, AWS, and the tooling I use daily
+      </p>
+    </div>
+
+    <div class="skills-section__groups">
+      @for (category of categories; track category.id; let index = $index) {
+        <section class="skills-section__group" appReveal [revealDelay]="index * 100">
+          <div class="skills-section__group-header">
+            <i class="bi {{ category.icon }}" aria-hidden="true"></i>
+            <div>
+              <h3 class="skills-section__group-title">{{ category.name }}</h3>
+              @if (category.description) {
+                <p class="skills-section__group-desc">{{ category.description }}</p>
+              }
+            </div>
+          </div>
+
+          <ul class="skills-section__list">
+            @for (skill of category.skills; track skill.name; let skillIndex = $index) {
+              <li
+                class="skills-section__item"
+                appReveal
+                revealVariant="scale"
+                [revealDelay]="index * 100 + skillIndex * 20"
+              >
+                <img
+                  class="skills-section__icon"
+                  [src]="getIconUrl(skill)"
+                  [alt]="skill.name + ' logo'"
+                  width="22"
+                  height="22"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="skills-section__label">{{ skill.name }}</span>
+              </li>
+            }
+          </ul>
+        </section>
+      }
+    </div>
+
+      <p class="skills-section__footer" appReveal [revealDelay]="200">
+        The tools and technologies I use to bring ideas to life — from APIs and real-time systems to cloud and DevOps
+      </p>
+  </div>
+</section>

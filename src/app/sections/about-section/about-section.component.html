@@ -1,0 +1,96 @@
+<section id="about" class="section about-future">
+  <div class="container">
+    <div class="section-heading mx-auto max-w-3xl text-center" appReveal>
+      <p class="eyebrow">About Me</p>
+      <h2><span class="text-gradient-primary">Built for production scale</span></h2>
+      <p class="section-heading__sub mx-auto">
+        Full-stack engineer turning complex maritime operations into software crews rely on every day.
+      </p>
+    </div>
+
+    <div class="about-future__shell" appReveal [revealDelay]="80">
+      <div class="about-future__grid" aria-hidden="true"></div>
+      <div class="about-future__orb about-future__orb--one" aria-hidden="true"></div>
+      <div class="about-future__orb about-future__orb--two" aria-hidden="true"></div>
+      <div class="about-future__scanline" aria-hidden="true"></div>
+
+      <div class="about-future__layout">
+        <aside class="about-future__identity" appReveal revealVariant="left" [revealDelay]="140">
+          <div class="about-future__avatar">
+            <span class="about-future__avatar-ring" aria-hidden="true"></span>
+            <span class="about-future__avatar-orbit" aria-hidden="true"></span>
+            <img
+              class="about-future__avatar-photo"
+              [src]="site.photoUrl"
+              [alt]="site.name + ' profile photo'"
+              width="160"
+              height="160"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          <div class="about-future__identity-body">
+            <p class="about-future__label">Profile.core</p>
+            <h3 class="about-future__name text-gradient-primary">{{ site.name }}</h3>
+            <p class="about-future__role">{{ site.title }}</p>
+
+            <div class="about-future__signals">
+              <span class="about-future__signal">
+                <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
+                {{ site.location }}
+              </span>
+              <span class="about-future__signal">
+                <i class="bi bi-briefcase-fill" aria-hidden="true"></i>
+                {{ site.yearsOfExperience }}+ years
+              </span>
+              <span class="about-future__signal about-future__signal--live">
+                <span class="about-future__signal-dot" aria-hidden="true"></span>
+                {{ site.availability }}
+              </span>
+            </div>
+
+            <dl class="about-future__stats about-future__stats--compact">
+              @for (metric of site.metrics.slice(0, 2); track metric.label) {
+                <div class="about-future__stat">
+                  <dt class="about-future__stat-value">{{ metric.value }}</dt>
+                  <dd class="about-future__stat-label">{{ metric.label }}</dd>
+                </div>
+              }
+            </dl>
+          </div>
+        </aside>
+
+        <div class="about-future__content" appReveal revealVariant="right" [revealDelay]="200">
+          <p class="about-future__intro" appReveal [revealDelay]="240">
+            {{ site.aboutIntro }}
+          </p>
+
+          <div class="about-pillars">
+            @for (pillar of site.aboutPillars; track pillar.title; let index = $index) {
+              <article
+                class="about-pillar"
+                appReveal
+                revealVariant="scale"
+                [revealDelay]="280 + index * 45"
+              >
+                <span class="about-pillar__icon" aria-hidden="true">
+                  <i class="bi {{ pillar.icon }}"></i>
+                </span>
+                <div class="about-pillar__body">
+                  <h3 class="about-pillar__title">{{ pillar.title }}</h3>
+                  <p class="about-pillar__text">{{ pillar.text }}</p>
+                </div>
+              </article>
+            }
+          </div>
+
+          <p class="about-future__education" appReveal [revealDelay]="640">
+            <i class="bi bi-mortarboard-fill" aria-hidden="true"></i>
+            <span>{{ site.educationLine }}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

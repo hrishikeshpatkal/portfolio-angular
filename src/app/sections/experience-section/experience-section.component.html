@@ -1,0 +1,92 @@
+<section id="experience" class="section section--alt experience-section">
+  <div class="container">
+    <div class="section-heading mx-auto max-w-3xl text-center" appReveal>
+      <p class="eyebrow">Experience</p>
+      <h2><span class="text-gradient-primary">Professional experience</span></h2>
+      <p class="section-heading__sub mx-auto">
+        Enterprise ERP, sync infrastructure, APIs, and cloud delivery for production teams.
+      </p>
+    </div>
+
+    <div class="experience-timeline">
+      @for (item of experiences; track item.id; let index = $index) {
+        <article
+          class="experience-timeline__item"
+          [attr.data-experience-id]="item.id"
+          [class.experience-timeline__item--current]="isCurrent(item)"
+          [class.experience-timeline__item--active]="activeId() === item.id"
+          appReveal
+          [revealDelay]="index * 120"
+          tabindex="0"
+          (mouseenter)="setActive(item.id)"
+          (focusin)="setActive(item.id)"
+        >
+          <header class="experience-timeline__header">
+            <div class="experience-timeline__meta">
+              <span class="experience-timeline__period">
+                <i class="bi bi-calendar3" aria-hidden="true"></i>
+                {{ item.startDate }} — {{ item.endDate }}
+              </span>
+              <span class="experience-timeline__type">{{ item.type }}</span>
+              @if (isCurrent(item)) {
+                <span class="experience-timeline__status">
+                  <span class="experience-timeline__status-dot" aria-hidden="true"></span>
+                  Active now
+                </span>
+              }
+              @if (item.location) {
+                <span class="experience-timeline__location">
+                  <i class="bi bi-geo-alt" aria-hidden="true"></i>
+                  {{ item.location }}
+                </span>
+              }
+            </div>
+
+            <h3 class="experience-timeline__role">{{ item.role }}</h3>
+
+            @if (item.companyUrl) {
+              <a
+                class="experience-timeline__company"
+                [href]="item.companyUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {{ item.company }}
+              </a>
+            } @else {
+              <p class="experience-timeline__company">{{ item.company }}</p>
+            }
+          </header>
+
+          <p class="experience-timeline__summary">{{ item.summary }}</p>
+
+          @if (item.metrics.length) {
+            <dl class="experience-timeline__metrics">
+              @for (metric of item.metrics; track metric.label) {
+                <div class="experience-timeline__metric">
+                  <dt class="experience-timeline__metric-value">{{ metric.value }}</dt>
+                  <dd class="experience-timeline__metric-label">{{ metric.label }}</dd>
+                </div>
+              }
+            </dl>
+          }
+
+          <div class="experience-timeline__highlights">
+            <h4 class="experience-timeline__highlights-title">
+              <i class="bi bi-stars" aria-hidden="true"></i>
+              Key contributions
+            </h4>
+            <ul class="experience-timeline__highlights-list">
+              @for (highlight of item.highlights; track highlight) {
+                <li class="experience-timeline__highlight">
+                  <span class="experience-timeline__highlight-dot" aria-hidden="true"></span>
+                  <span>{{ highlight }}</span>
+                </li>
+              }
+            </ul>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

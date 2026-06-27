@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="Angular Signals">
+  <defs><linearGradient id="ngsig" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F472B6"/><stop offset="1" stop-color="#DD0031"/></linearGradient></defs>
+  <rect width="48" height="48" rx="10" fill="url(#ngsig)"/>
+  <g fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round">
+    <path d="M18 30a8 8 0 0 1 0-12"/>
+    <path d="M30 18a8 8 0 0 1 0 12"/>
+    <path d="M14 34a14 14 0 0 1 0-20"/>
+    <path d="M34 14a14 14 0 0 1 0 20"/>
+  </g>
+  <circle cx="24" cy="24" r="3.4" fill="#fff"/>
+</svg>

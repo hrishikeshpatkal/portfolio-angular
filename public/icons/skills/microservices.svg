@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="Microservices">
+  <defs><linearGradient id="msvc" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2DD4BF"/><stop offset="1" stop-color="#0D9488"/></linearGradient></defs>
+  <rect width="48" height="48" rx="10" fill="url(#msvc)"/>
+  <g fill="#fff">
+    <rect x="20" y="9" width="8" height="8" rx="2"/>
+    <rect x="10" y="31" width="8" height="8" rx="2"/>
+    <rect x="20" y="31" width="8" height="8" rx="2"/>
+    <rect x="30" y="31" width="8" height="8" rx="2"/>
+    <path d="M24 17v6M24 23H14v8M24 23h10v8M24 23v8" stroke="#fff" stroke-width="2" fill="none"/>
+  </g>
+</svg>

@@ -1,0 +1,79 @@
+<header
+  class="site-header fixed inset-x-0 top-0 z-[100] pt-[env(safe-area-inset-top)] transition-all duration-300 max-md:border-0 max-md:bg-transparent max-md:shadow-none max-md:backdrop-blur-none max-md:transition-none"
+  [class.site-header--scrolled]="isScrolled()"
+>
+  <div class="container header-inner">
+    <button
+      type="button"
+      class="header-brand group"
+      appBrandLogoFx
+      (click)="navigate('home')"
+      aria-label="Go to home"
+    >
+      <app-brand-logo [src]="site.logoUrl" size="header" [bootOnLoad]="true" />
+      <span class="header-brand__text hidden md:flex">
+        <span class="header-brand__name">{{ site.name }}</span>
+        <span class="header-brand__role">{{ site.title }}</span>
+      </span>
+    </button>
+
+    <nav class="header-nav hidden min-w-0 flex-1 justify-center md:flex" aria-label="Main navigation">
+      <div class="header-nav__track relative flex items-center">
+        @for (item of navItems; track item.id) {
+          <button
+            type="button"
+            #navItem
+            class="header-nav__link px-4 py-2 text-sm font-medium transition-colors duration-200 hover:text-foreground"
+            [class.header-nav__link--active]="activeSection() === item.id"
+            (click)="navigate(item.id)"
+          >
+            {{ item.label }}
+          </button>
+        }
+        <span
+          class="header-nav__indicator absolute bottom-0 h-0.5 rounded-full bg-primary transition-[left] duration-300 ease-out"
+          [style.left.px]="indicatorLeft()"
+          [style.width.px]="24"
+        ></span>
+      </div>
+    </nav>
+
+    <div class="header-actions">
+      <a
+        class="btn btn--ghost btn--sm hidden lg:inline-flex"
+        [href]="site.resumeUrl"
+        [attr.download]="site.resumeFileName"
+      >
+        <i class="bi bi-download" aria-hidden="true"></i>
+        <span class="hidden xl:inline">Résumé</span>
+      </a>
+      <app-theme-preview class="hidden md:inline-flex" />
+    </div>
+  </div>
+</header>
+
+<div class="theme-preview-mobile md:hidden" aria-hidden="false">
+  <app-theme-preview placement="mobile" />
+</div>
+
+<nav class="mobile-bottom-nav fixed inset-x-0 bottom-0 z-[110] border-t border-border bg-card safe-area-bottom md:hidden" aria-label="Mobile bottom navigation">
+  <div class="header-mobile-nav__track relative flex items-center justify-around px-2 py-2">
+    <span
+      class="absolute top-1/2 h-[3.75rem] w-[3.75rem] -translate-y-1/2 rounded-xl bg-primary/10 transition-[left] duration-300 ease-out"
+      [style.left.px]="mobileIndicatorLeft()"
+    ></span>
+
+    @for (item of mobileNavItems; track item.id) {
+      <button
+        type="button"
+        #mobileNavItem
+        class="mobile-bottom-nav__item relative z-10 flex h-14 w-14 flex-col items-center justify-center gap-1 border-0 bg-transparent transition-colors duration-200"
+        [class.mobile-bottom-nav__item--active]="isMobileNavActive(item.id)"
+        (click)="navigate(item.id, $event)"
+      >
+        <i class="bi {{ item.icon }} text-xl" aria-hidden="true"></i>
+        <span class="text-[10px] font-medium">{{ item.label }}</span>
+      </button>
+    }
+  </div>
+</nav>
