@@ -10,7 +10,6 @@ import {
   viewChildren,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { ThemePreviewComponent } from '../theme-preview/theme-preview.component';
 import { BrandLogoComponent } from '../../shared/components/brand-logo/brand-logo.component';
 import { BrandLogoFxDirective } from '../../shared/directives/brand-logo-fx.directive';
 import { ScrollService } from '../../core/services/scroll.service';
@@ -26,7 +25,7 @@ interface MobileNavItem {
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [ThemePreviewComponent, BrandLogoComponent, BrandLogoFxDirective],
+  imports: [BrandLogoComponent, BrandLogoFxDirective],
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {

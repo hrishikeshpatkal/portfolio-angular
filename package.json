@@ -4,9 +4,6 @@
   "scripts": {
     "ng": "ng",
     "optimize:images": "node scripts/optimize-images.mjs",
-    "config:theme-bootstrap": "node scripts/generate-theme-bootstrap.mjs",
-    "prestart": "node scripts/generate-theme-bootstrap.mjs",
-    "prebuild": "node scripts/generate-theme-bootstrap.mjs",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",

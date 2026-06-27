@@ -40,7 +40,7 @@ A single-page portfolio that presents professional identity, production experien
 |----|-------------|--------|
 | F1 | Single page with anchored sections | Done |
 | F2 | Responsive layout | Done |
-| F3 | Theme picker with persisted selection | Done |
+| F3 | Fixed responsive visual design | Done |
 | F4 | SEO meta tags and JSON-LD Person schema | Done |
 | F5 | Mailto contact form with validation | Done |
 | F6 | Resume download from `/resume.pdf` | Done |
@@ -78,25 +78,20 @@ Deploy **`dist/personal-portfolio/browser/`** to Vercel.
 
 3. **Domain / SEO** — `public/sitemap.xml`, `public/robots.txt`, canonical URL in `src/index.html`
 
-## Themes
-
-Eight themes via the header palette control (including **Developer Dark**).  
-Selection is stored in `localStorage` under `portfolio-theme`.
-
 ## Project structure
 
 ```
 src/app/
-├── core/services/   # theme, seo, contact, scroll, motion
-├── data/            # static content and theme config
-├── layout/          # header, footer, theme picker
+├── core/services/   # seo, contact, scroll, motion
+├── data/            # static portfolio content
+├── layout/          # header, footer
 ├── sections/        # hero, about, skills, projects, experience, education, contact
 ├── pages/           # home, 404
 ├── shared/          # reveal-on-scroll directive
 └── models/          # TypeScript interfaces
 
 public/              # resume, images, icons, sitemap, robots.txt
-scripts/             # image optimization and theme bootstrap helpers
+scripts/             # image optimization helpers
 ```
 
 ## Scripts

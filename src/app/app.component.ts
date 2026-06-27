@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ThemeService } from './core/services/theme.service';
 import { MotionService } from './core/services/motion.service';
 
 @Component({
@@ -12,7 +11,6 @@ import { MotionService } from './core/services/motion.service';
 })
 export class AppComponent {
   constructor() {
-    inject(ThemeService);
     inject(MotionService);
   }
 }

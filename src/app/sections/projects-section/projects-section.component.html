@@ -70,16 +70,17 @@
                 <i class="bi bi-journal-text" aria-hidden="true"></i>
                 Case study
               </button>
-              <button
-                type="button"
-                class="showcase-card__action-btn showcase-card__action-btn--primary"
-                disabled
-                aria-disabled="true"
-                title="Live demo coming soon"
-              >
-                <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
-                Live demo
-              </button>
+              @if (project.liveUrl) {
+                <a
+                  class="showcase-card__action-btn showcase-card__action-btn--primary showcase-card__action-btn--interactive"
+                  [href]="project.liveUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+                  Live demo
+                </a>
+              }
               <a
                 class="showcase-card__action-btn showcase-card__action-btn--interactive"
                 [href]="githubUrl(project)"
