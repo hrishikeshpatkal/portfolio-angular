@@ -13,7 +13,7 @@ export const SITE: SiteConfig = {
     { text: '.' },
   ],
   tagline:
-    '4+ years at JiBe shipping maritime ERP for 5,000+ users across 50+ sites — 150+ REST APIs, event-driven sync, and AWS delivery in the real world.',
+    '4+ years of experience building enterprise-grade Shipping ERP solutions, developing scalable REST APIs, event-driven systems, and cloud-based applications used by thousands of users.',
   email: 'hrishikeshpatkal@gmail.com',
   phone: '+91 70660 00877',
   location: 'Pune, Maharashtra, India',
